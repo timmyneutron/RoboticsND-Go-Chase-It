@@ -12,7 +12,7 @@
     <child link="chassis" />
   </joint>
 
-  <link name="chassis_front">
+  <link name="chassis">
     <pose>0 0 0.1 0 0 0</pose>
 
     <inertial>
