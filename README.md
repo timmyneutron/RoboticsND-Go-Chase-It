@@ -1,6 +1,8 @@
 # Udacity Robotics Nanodegree
 # Project #2: Go Chase It
 
+![Screenshot](./screenshot.jpg)
+
 ## Introduction
 This is a project for Udacity's Robotics NanoDegree. It's a robot that is capable of finding a white ball in a forward-facing camera, and driving toward it.
 
