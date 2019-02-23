@@ -1,6 +1,8 @@
 # Udacity Robotics Nanodegree
 # Project #2: Go Chase It
 
+![Screenshot](./screenshot.jpg)
+
 ## Introduction
 This is a project for Udacity's Robotics NanoDegree. It's a robot that is capable of finding a white ball in a forward-facing camera, and driving toward it.
 
@@ -14,7 +16,11 @@ Concepts explored in this project:
   - C++
 
 ## Getting Started
-To view this project, you must have Gazebo and ROS installed on Linux. [Click here for Gazebo download and installation instructions](http://gazebosim.org). [Click here for ROS installation instructions](http://wiki.ros.org/ROS/Installation).
+To view this project, you must have Gazebo and ROS installed on Linux.
+
+[Click here for Gazebo download and installation instructions](http://gazebosim.org).
+
+[Click here for ROS installation instructions](http://wiki.ros.org/ROS/Installation).
 
 With Gazebo and ROS installed, you first need to create a catkin workspace. Navigate to your home directory and execute:
 ```
