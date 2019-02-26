@@ -28,7 +28,8 @@ void process_image_callback(const sensor_msgs::Image img)
   int scan_start = img.data.size() / 3;
   int scan_end = img.data.size() * 2 / 3;
 
-  bool ball_found = false;
+  int num_white_pixels = 0;
+  int x_position_sum = 0;
 
   // Scan each pixel looking for a white one
   for (int i=scan_start; i+2<scan_end; i+=3) {
@@ -39,27 +40,31 @@ void process_image_callback(const sensor_msgs::Image img)
 
     if (red_channel == 255 && green_channel == 255 && blue_channel == 255)
     {
-      ball_found = true;
       int x_position = (i % (img.width * 3)) / 3;
-
-      if (x_position < img.width / 3)
-      {
-        drive_robot(0.5, 0.5);
-      }
-      else if (x_position > img.width * 2 / 3)
-      {
-        drive_robot(0.5, -0.5);
-      }
-      else
-      {
-        drive_robot(0.5, 0.0);
-      }
-    } 
+      x_position_sum += x_position;
+      num_white_pixels += 1;
+    }
   }
 
-  if (!ball_found)
+  if (num_white_pixels == 0)
   {
     drive_robot(0.0, 0.0);
+  }
+  else
+  {
+    int mean_x_position = x_position_sum / num_white_pixels;
+    if (mean_x_position < img.width / 3)
+    {
+      drive_robot(0.5, 0.5);
+    }
+    else if (mean_x_position > img.width * 2 / 3)
+    {
+      drive_robot(0.5, -0.5);
+    }
+    else
+    {
+      drive_robot(0.5, 0.0);
+    }
   }
 }
 
