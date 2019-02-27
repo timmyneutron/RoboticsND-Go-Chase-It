@@ -25,70 +25,63 @@
       />
     </inertial>
 
-    <collision name="chassis_front_collision">
+    <collision name="chassis_collision_1">
+      <origin xyz="-.2 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .2 .1" />
+      </geometry>
+    </collision>
+
+    <visual name="chassis_visual_1">
+      <origin xyz="-.2 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="1.0 .2 .1" />
+      </geometry>
+    </visual>
+
+    <collision name="chassis_collision_2">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <box size=".2 .6 .1" />
       </geometry>
     </collision>
 
-    <visual name="chassis_front_visual">
+    <visual name="chassis_visual_2">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
         <box size=".2 .6 .1" />
       </geometry>
-      <material name="orange"/>
     </visual>
-
-    <collision name="chassis_back_collision">
-      <origin xyz="-.3 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size=".4 .2 .1" />
-      </geometry>
-    </collision>
-
-    <visual name="chassis_back_visual">
-      <origin xyz="-.3 0 0" rpy="0 0 0" />
-      <geometry>
-        <box size=".4 .2 .1" />
-      </geometry>
-    </visual>
-
-  </link>
-
-  <link name="back_caster">
-
-    <inertial>
-      <mass value="10.0" />
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <inertia
-        ixx="0.1" ixy="0" ixz="0"
-        iyy="0.1" iyz="0"
-        izz="0.1"
-      />
-    </inertial>
 
     <collision name="back_caster_collision">
-      <origin xyz="-0.4 0 -0.05" rpy="0 0 0" />
+      <origin xyz="-0.65 0 -0.05" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.05" />
+        <sphere radius="0.0499" />
       </geometry>
     </collision>
 
     <visual name="back_caster_visual">
-      <origin xyz="-0.4 0 -0.05" rpy="0 0 0" />
+      <origin xyz="-0.65 0 -0.05" rpy="0 0 0" />
       <geometry>
-        <sphere radius="0.05" />
+        <sphere radius="0.0499" />
+      </geometry>
+    </visual>
+
+    <collision name="front_caster_collision">
+      <origin xyz="0.25 0 -0.05" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0499" />
+      </geometry>
+    </collision>
+
+    <visual name="front_caster_visual">
+      <origin xyz="0.25 0 -0.05" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.0499" />
       </geometry>
     </visual>
 
   </link>
-
-  <joint type="fixed" name="back_caster_hinge">
-    <origin xyz="-0.4 0 -0.05" rpy="0 0 0" />
-    <child link="back_caster" />
-    <parent link="chassis" />
-  </joint>
 
   <link name="left_wheel">
 
@@ -191,9 +184,13 @@
     </visual>
 
   </link>
+  
+  <gazebo reference="camera">
+    <material>Gazebo/Green</material>
+  </gazebo>
 
   <joint type="fixed" name="camera_joint">
-    <origin xyz="0.1 0 0" rpy="0 0 0" />
+    <origin xyz="0.3 0 0" rpy="0 0 0" />
     <parent link="chassis" />
     <child link="camera" />
   </joint>
@@ -226,7 +223,7 @@
   </link>
 
   <joint name="hokuyo" type="fixed">
-    <origin xyz="0.05 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0.25 0 0.08" rpy="0 0 0"/>
     <parent link="chassis" />
     <child link="hokuyo" />
   </joint>

@@ -48,6 +48,7 @@ void process_image_callback(const sensor_msgs::Image img)
 
   if (num_white_pixels == 0)
   {
+    ROS_INFO("NO BALL FOUND");
     drive_robot(0.0, 0.0);
   }
   else
@@ -55,14 +56,17 @@ void process_image_callback(const sensor_msgs::Image img)
     int mean_x_position = x_position_sum / num_white_pixels;
     if (mean_x_position < img.width / 3)
     {
+      ROS_INFO("BALL IS LEFT");
       drive_robot(0.5, 0.5);
     }
     else if (mean_x_position > img.width * 2 / 3)
     {
+      ROS_INFO("BALL IS RIGHT");
       drive_robot(0.5, -0.5);
     }
     else
     {
+      ROS_INFO("BALL IS CENTER");
       drive_robot(0.5, 0.0);
     }
   }
