@@ -29,28 +29,30 @@ $ cd catkin_ws/src
 $ catkin_init_workspace
 ```
 
-Then download/clone the repository to a folder outside the catkin workspace, and then copy the ```my_robot``` and  ```ball_chaser``` folders, and the ```CMakeLists.txt``` file into the ```src``` folder of the catkin workspace. Once you've done that, navigate to the top level of the catkin workspace and execute the following to build the executables:
-
+Next, download/clone the repository and copy the ```my_robot``` and ```ball_chaser``` directories into the src directory:
 ```
+$ git clone https://github.com/timmyneutron/RoboticsND-Go-Chase-It.git
+$ cp -R RoboticsND-Go-Chase-It/ball_chaser
+$ cp -R RoboticsND-Go-Chase-It/my_robot
+$ rm -rf RoboticsND-Go-Chase-It
+```
+
+Then navigate up to the top-level catkin workspace directory and build the executables:
+```
+$ cd ..
 $ catkin_make
 ```
 
-Next, execute the following to open Gazebo with the robot in it:
+Next, you can open Gazebo with the robot in it:
 ```
 $ source devel/setup.bash
 $ roslaunch my_robot world.launch
 ```
 
-Open another terminal, navigate to the top level catkin workspace, and execute:
+To make the robot chase the white ball, open another terminal, navigate to the top level catkin workspace, and execute:
 ```
 $ source devel/setup.bash
-$ rosrun ball_chaser drive_bot
-```
-
-And finally, open a third terminal and execute:
-```
-$ source devel/setup.bash
-$ rosrun ball_chaser/process_image
+$ roslaunch ball_chaser ball_chaser.launch
 ```
 
 This will start the node that processes an image from the forward-facing camera and commands the robot to chase the white ball in its field of view.
